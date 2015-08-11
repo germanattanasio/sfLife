@@ -1,7 +1,7 @@
 {
-  "name": "sfLife",
-  "version": "0.0.0",
-  "homepage": "https://github.com/jryoo/sfLife",
+  "name": "san-francisco-life",
+  "version": "0.0.1",
+  "homepage": "https://github.com/germanattanasio/san-francisco-life",
   "authors": [
     "Emma Marriott <mekmarriott@gmail.com>"
   ],
@@ -10,9 +10,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#~0.5.4",
@@ -21,6 +19,7 @@
     "paper-toggle-button": "Polymer/paper-toggle-button#~0.5.4",
     "core-ajax": "Polymer/core-ajax#~0.5.4",
     "underscore": "~1.7.0",
-    "paper-button": "Polymer/paper-button#~0.5.4"
+    "paper-button": "Polymer/paper-button#~0.5.4",
+    "require": "*"
   }
 }

@@ -1,467 +1,412 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-
 <polymer-element name="sf-life" attributes="">
-    <template>
-        <link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
-        <link rel="import" href="../bower_components/paper-button/paper-button.html">
-        <link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
-        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../js/vanilla.js"></script>
-        <script src="../js/jquery.min.js"></script>
-        <style>
-        .left-panel {
-            /*background-color: #45DFBE;*/
-            background-color: #979BA5;
-            height: 100%;
-            padding: 50px;
-        }
-        .right-panel {
-            background-color: #FFFFFF;
-            height: 100%;
-        }
-        .option-tab {
-            margin-bottom: 15px;
-        }
+  <template>
+    <link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
+    <link rel="import" href="../bower_components/paper-button/paper-button.html">
+    <link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
 
-        #tooltip {   
-            position: absolute;           
-            text-align: center;
-            padding: 20px;           
-            margin: 10px;
-            font: 12px sans-serif;        
-            background: lightsteelblue;   
-            border: 1px;      
-            border-radius: 2px;           
-            pointer-events: none;         
-        }
-        #tooltip h4{
-            margin:0;
-            font-size:14px;
-        }
-        #tooltip {
-            background:white;
-            border:1px solid grey;
-            border-radius:5px;
-            font-size:12px;
-            width:auto;
-            padding:4px;
-            padding-top: 6px;
-            color:white;
-            opacity:0;
-        }
-        #tooltip table{
-            table-layout:fixed;
-        }
-        #tooltip tr td{
-            padding:0;
-            margin:0;
-        }
-        #tooltip tr td:nth-child(1){
-            width:50px;
-        }
-        #tooltip tr td:nth-child(2){
-            text-align:center;
-        }
-        .fade {
-           opacity: 0;
-           transition: opacity .25s ease-in-out;
-           -moz-transition: opacity .25s ease-in-out;
-           -webkit-transition: opacity .25s ease-in-out;
-       }
-       .ok {
-            opacity: 1;
-            transition: opacity .25s ease-in-out;
-            -moz-transition: opacity .25s ease-in-out;
-            -webkit-transition: opacity .25s ease-in-out;
-       }
-        paper-button.colored {
-          color: #4285f4;
-        }
+    <style>
+    .left-panel {
+      /*background-color: #45DFBE;*/
+      background-color: #979BA5;
+      height: 100%;
+      padding: 50px;
+    }
 
-        paper-button[raised].colored {
-          background: #4285f4;
-          color: #fff;
-        }
+    .right-panel {
+      background-color: #FFFFFF;
+      height: 100%;
+    }
 
-        paper-button.custom > core-icon {
-          margin-right: 4px;
-        }
+    .option-tab {
+      margin-bottom: 15px;
+    }
 
-        paper-button.hover:hover {
-          background: #eee;
-        }
+    #tooltip {
+      position: absolute;
+      text-align: center;
+      padding: 20px;
+      margin: 10px;
+      font: 12px sans-serif;
+      background: lightsteelblue;
+      border: 1px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
 
-        paper-button.blue-ripple::shadow #ripple {
-          color: #4285f4;
-        }
+    #tooltip h4 {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    #tooltip {
+      background: white;
+      border: 1px solid grey;
+      border-radius: 5px;
+      font-size: 12px;
+      width: auto;
+      padding: 4px;
+      padding-top: 6px;
+      color: white;
+      opacity: 0;
+    }
+
+    #tooltip table {
+      table-layout: fixed;
+    }
+
+    #tooltip tr td {
+      padding: 0;
+      margin: 0;
+    }
+
+    #tooltip tr td:nth-child(1) {
+      width: 50px;
+    }
+
+    #tooltip tr td:nth-child(2) {
+      text-align: center;
+    }
+
+    .fade {
+      opacity: 0;
+      transition: opacity .25s ease-in-out;
+      -moz-transition: opacity .25s ease-in-out;
+      -webkit-transition: opacity .25s ease-in-out;
+    }
+
+    .ok {
+      opacity: 1;
+      transition: opacity .25s ease-in-out;
+      -moz-transition: opacity .25s ease-in-out;
+      -webkit-transition: opacity .25s ease-in-out;
+    }
+
+    paper-button.colored {
+      color: #4285f4;
+    }
+
+    paper-button[raised].colored {
+      background: #4285f4;
+      color: #fff;
+    }
+
+    paper-button.custom > core-icon {
+      margin-right: 4px;
+    }
+
+    paper-button.hover:hover {
+      background: #eee;
+    }
+
+    paper-button.blue-ripple::shadow #ripple {
+      color: #4285f4;
+    }
     </style>
     <div id="contain" class="top-section">
-    <div class="row">
-      <div class="col-md-4 left-panel">
-        <div center horizontal layout>
-            <div flex><h2>HEDGE</h2></div>
-        </div>
-        </br>
-        <template repeat="{{ feature in features }}">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 col-lg-4 left-panel">
+          <div center horizontal layout>
+            <div flex>
+              <h2>HEDGE</h2></div>
+          </div>
+          </br>
+          <template repeat="{{ feature in features }}">
             <div center horizontal layout class="option-tab">
-                <div flex> {{feature[0]}} </div>
-                <paper-toggle-button id="{{feature[0]}}" role="button" aria-checked="false" on-core-change="{{featureToggled}}"></paper-toggle-button>
-            </div> 
-        </template>
-        <button on-click="{{showWatson}}" id="ibm" class="colored ibm">Watson Recommendations</button>
-      </div>
-      <div class="col-md-8 right-panel">
+              <div flex> {{feature[0]}} </div>
+              <paper-toggle-button id="{{feature[0]}}" role="button" aria-checked="false" on-core-change="{{featureToggled}}"></paper-toggle-button>
+            </div>
+          </template>
+          <button on-click="{{showWatson}}" id="ibm" class="colored ibm">Watson Recommendations</button>
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-8 right-panel">
           <div id="map" style="width: 100%; height: 100%; margin-left:-10px" class="ok"></div>
-      </div>
-      <div id="tooltip"></div><!-- div to hold tooltip. -->
-      <div class="row cute legend" style="position: absolute; bottom:200px; right: 15px;">
-            <h3> Legend  </h3>
-            <div style="width:200px; display:flex;">Our Livability index corresponds to the normalized value of your housing and lifestyle preferences.</div>
+        </div>
+        <div id="tooltip"></div>
+        <!-- div to hold tooltip. -->
+        <div class="row cute legend" style="position: absolute; bottom:200px; right: 15px;">
+          <h3> Legend  </h3>
+          <div style="width:200px; display:flex;">Our Livability index corresponds to the normalized value of your housing and lifestyle preferences.</div>
         </div>
         <div class="row cute" style="position: absolute; bottom:7px; right: 50px;">
-            Data Provided by <a href="https://data.sfgov.org" target="_blank"> SFGOV.org </a> </p>
+          Data Provided by <a href="https://data.sfgov.org" target="_blank"> SFGOV.org </a> </p>
         </div>
-
+      </div>
     </div>
-    </div>
-    </template>
-    <script src="../js/d3.v2.min.js"></script>
-    <script src="../bower_components/require/build/require.min.js"></script>
-    <script src="../bower_components/underscore/underscore-min.js" type="text/javascript"></script>
-    <script>
-        var $j = jQuery.noConflict();
-        $j.ajaxSetup({
-            beforeSend: function(xhr, settings) {
-                    // Send the token to same-origin, relative URLs only.
-                    // Send the token only if the method warrants CSRF protection
-                    // Using the CSRFToken value acquired earlier
-                    xhr.setRequestHeader("X-CSRFToken", 'yCp5pVOwVV5VDNQwrW3ol8sBOcKJfyCa');
-            }
+  </template>
+  <script src="../js/d3.v2.min.js"></script>
+  <script src="../bower_components/require/build/require.min.js"></script>
+  <script src="../bower_components/underscore/underscore-min.js" type="text/javascript"></script>
+  <script>
+  var $j = jQuery.noConflict();
+  Polymer('sf-life', {
+    metricData: null,
+    features: [],
+    scores: {},
+    computedScores: {},
+    watsonFeatures: [],
+    watsonBlocks: [],
+    total: 0,
+    lastSelectedBlock: null,
+    highColor: 'black',
+    //colorArray: ["#E1E6F8", "#707070", "#253264", "#0F1E58", "#000D3F"],
+    colorArray: ['rgb(255,255,229)', 'rgb(247,252,185)', 'rgb(217,240,163)', 'rgb(173,221,142)', 'rgb(120,198,121)', 'rgb(65,171,93)', 'rgb(35,132,67)', 'rgb(0,104,55)', 'rgb(0,69,41)'],
+    map: null,
+    ready: function() {
+      var r = new XMLHttpRequest();
+      var that = this;
+      r.open('GET', 'static/data/SF.json', true);
+      r.onreadystatechange = function() {
+        if (r.readyState != 4 || r.status != 200) return;
+        metricData = JSON.parse(r.responseText);
+        _.each(metricData.format, function(feature) {
+          that.features.push([feature, false]);
         });
-        Polymer('sf-life', {
-            metricData: null,
-            features: [],
-            scores: {},
-            computedScores: {},
-            watsonFeatures: [],
-            watsonBlocks: [],
-            total: 0,
-            lastSelectedBlock: null,
-            highColor: 'black',
-            //colorArray: ["#E1E6F8", "#707070", "#253264", "#0F1E58", "#000D3F"],
-            colorArray: ['rgb(255,255,229)', 'rgb(247,252,185)', 'rgb(217,240,163)', 'rgb(173,221,142)', 'rgb(120,198,121)', 'rgb(65,171,93)', 'rgb(35,132,67)', 'rgb(0,104,55)', 'rgb(0,69,41)'],
-            map: null,
-            ready: function() {
-                var r = new XMLHttpRequest();
-                var that = this;
-                r.open("GET", "static/data/SF.json", true);
-                r.onreadystatechange = function () {
-                  if (r.readyState != 4 || r.status != 200) return;
-                  metricData = JSON.parse(r.responseText);
-                  _.each(metricData.format, function(feature){
-                    that.features.push([feature, false]);
-                  })
-                  _.map(metricData.data, function(num, key){
-                    that.scores[key] = num;
-                    that.computedScores[key] = 0;
-                  });
-                };
-                r.send("na");
-                this.draw(false);
-                $j(window).resize(function() {
-                    if(this.resizeTO) clearTimeout(this.resizeTO);
-                    this.resizeTO = setTimeout(function() {
-                        $j(this).trigger('resizeEnd');
-                    }, 500);
-                });
-
-                $j(window).bind('resizeEnd', function() {
-                    that.draw(false);
-                });
-
-            },
-            draw: function(watson) {
-                var that = this;
-                var arr = [];
-                var rates = [];
-                var width = that.$.map.offsetWidth;
-                var height = that.$.map.offsetHeight;
-
-                //var scale = width * 354;
-                var scale = (width/843)*268000;
-                var horizontalOffset = width / 1.7;
-                var verticalOffset = height / 3.05;
-
-                if (that.$.map.querySelector('svg') != undefined) {
-                    //that.$.map.querySelector('svg').addClass('fade');
-                    that.$.map.querySelector('svg').remove();
-                }
-                var map = d3.select(that.$.map).append('svg').attr("width", width)
-                .attr("height", height);
-                this.map = map;
-                var path = d3.geo.path().projection(d3.geo.albers().origin([-122.4031949051393, 37.80511854740679]).scale(scale).translate([horizontalOffset, verticalOffset]));
-                d3.json('static/data/AsthmaRates_CB00.json', function(json) {
-                    map.selectAll('path')
-                        .data(json.features)
-                        .enter().append('path')
-                        .attr('d', path)
-                        .attr("id", function(d, i){ /*console.log(i);*/ return 'n' + i })
-                        .attr('class', function(d, i) {
-                            //console.log('block: ' + d.properties.BLOCKGROUP);
-                            //   console.log('zip z' + d.properties);
-                            arr.push(d.properties);
-                            return 'block b' + d.properties.BLOCKGROUP // + 'num id' + i
-                        })
-                        .style("fill", function(d) { /*console.log(i);*/
-                            //console.dir(that.watsonBlocks);
-                            if (watson && that.watsonBlocks.indexOf(d.properties.BLOCKGROUP) <= -1) {
-                                return that.colorBlock(0, 10, that.colorArray);
-                            } else {
-                                return that.colorBlock(that.computedScores[d.properties.BLOCKGROUP], 10, that.colorArray);
-                            }
-                        })
-                        .on('mouseover', function() {
-                            var zip = d3.select(this).attr('class').split('block b').join('');
-                            var ques = d3.select(this).attr('id').split('n').join('');
-                            var score = Math.round(that.computedScores[zip] * 10) / 10;
-                            //console.log('block ' + zip + ' selected with id ' + ques + ' with score ' + score + ' and total ' + that.total);
-
-                            d3.select(that.$.map).selectAll('p').text('');
-                            // for (key in arr) {
-                            //     d3.select(that.$.map.querySelector('.b' + arr[key].BLOCKGROUP)).style("fill", "black");
-                            // }
-                            //d3.select(that.$.map.querySelector('.b' + zip)).style("fill", "purple");
-
-                            // Add tooltip
-                            d3.select(that.$.tooltip).transition().duration(200).style("opacity", .9);
-
-                            var tootipContent =                     
-                                "<table>"+
-                                "<tr><td>Score</td><td>"+(score)+"</td></tr>"+
-                                "</table>";
-
-                            d3.select(that.$.tooltip).html(tootipContent)  
-                                .style("left", (d3.event.pageX) + "px")     
-                                .style("top", (d3.event.pageY - 28) + "px");
-                            
-                            if (!watson) {
-                                if (that.lastSelectedBlock != null) {
-                                    d3.select('#n' + lastSelectedBlock).style("fill", colorBlock(that.computedScores[zip], 10, that.colorArray));
-                                }
-                                lastSelectedBlock = ques; //global value for last obj
-                                d3.select('#map .b' + zip).style("fill", that.highColor);
-                            }
-                        })
-                        .on('mouseout', function() {
-                            // Remove tooltip on mouse out
-                            d3.select(that.$.tooltip).transition().duration(500).style("opacity", 0);
-                            // Deselect block on mouse out
-
-                            if (!watson && that.lastSelectedBlock != null) {
-                                d3.select('#n' + lastSelectedBlock).style("fill", colorBlock(that.computedScores[lastSelectedBlock], 10, that.colorArray));
-                            }
-                            for (key in arr) {
-                                //d3.select(that.$.map.querySelector('.b' + arr[key].BLOCKGROUP)).style("fill", "black");
-                            }
-                        });
-                }); 
-            },
-            calculateScore: function(district_id) {
-                //console.log("calculating score");
-                score = 0.0;
-                feature_scores = this.scores[district_id];
-                //console.dir(feature_scores);
-                for (var i = 0; i < feature_scores.length; i++) {
-                    if (this.features[i][1]) {
-                        score += feature_scores[i];
-                    }
-                }
-                if (this.total > 0){
-                    score = score/this.total;
-                } else {
-                    score = 0.0;
-                }
-                return score;
-            },
-            updateTotal: function() {
-                sum = 0;
-                _.each(this.features, function(feature){
-                    if (feature[1] == true){
-                        sum++;
-                    }
-                })
-                this.total = sum;
-            },
-            featuresChanged: function(oldValue) {
-                this.updateTotal();
-            },
-            featureToggled: function(obj) {
-                var index = -1;
-                var that = this;
-                _.each(that.features, function(feature){
-                    if (feature[0] == obj.target.id){
-                        feature[1] = !feature[1];
-                    }
-                })
-                this.updateTotal();
-                _.map(metricData.data, function(num, key) {
-                    that.computedScores[key] = that.calculateScore(key) * 10;
-                });
-                this.updateWatson();
-                this.draw(false);
-            },
-            colorBlock: function(value, max_val, swatch) {
-                //console.log("value: " + value + " max_val: " + max_val + " swatch");
-                var step_size = Math.round(max_val / swatch.length);
-                var color = Math.round(value / step_size);
-                return swatch[Math.min(Math.min(color, swatch.length), swatch.length - 1)]
-            },
-            updateWatson: function() {
-                // var selectedFeatures = [];
-                // _.each(this.features, function(feature){
-                //     if (feature[1]){
-                //         selectedFeatures.push(feature[0]);
-                //     }
-                // });
-                // console.log(selectedFeatures);
-                // this.watsonFeatures.selectedFeatures;
-                // if (this.shouldCallWatson()) {
-                //     // this.callWatson(selectedFeatures, function(data, error) {
-                //     //     if (error) {
-                //     //         alert("trouble calling Watson");
-                //     //     } else {
-                //     //         var solutions = data.resolution.solutions;
-                //     //     }
-                //     // });
-                // } else {
-                //     this.$.ibm.disable = true;
-                // }
-            },
-
-      //       {
-      //   "status": "EXCLUDED",
-      //   "solution_ref": "060750329007"
-      // },
-      // {
-      //   "status": "FRONT",
-      //   "solution_ref": "060750124005",
-      //   "shadow_me": [
-      //     "060750120001",
-      //     "060750160001",
-      //     "060750107003",
-      //     "060750264032"
-      //   ]
-      // },
-            showWatson: function() {
-                var that = this;
-                this.watsonBlocks = [];
-                var selectedFeatures = [];
-                _.each(this.features, function(feature){
-                    if (feature[1]){
-                        selectedFeatures.push(feature[0]);
-                    }
-                });
-                console.log(selectedFeatures);
-
-                this.watsonFeatures.selectedFeatures;
-                if (this.shouldCallWatson()) {
-                    this.callWatson(selectedFeatures, function(data, error) {
-                        //console.dir("HELLO" + data);
-
-                        var parsedData = JSON.parse(data);
-                        delete parsedData
-                        console.log("hello: " + parsedData.status);
-                        if (error) {
-                            console.log("[ERROR] calling watson : " + error);
-                        } else {
-                            var solutions = parsedData.content.resolution.solutions;
-                            console.dir(solutions);
-                            _.each(solutions, function(e) {
-                                console.log("hello" + e);
-                                if (e.status == "FRONT") {
-                                    that.watsonBlocks.push(e.solution_ref);
-                                }
-                            })
-                            that.draw(true);
-                        }
-                    });
-                } else {
-                    alert("Too many features to call Watson");
-                }
-            },
-            objectLength: function(obj) {
-                var count = 0;
-                var i;
-
-                for (i in obj) {
-                    if (obj.hasOwnProperty(i)) {
-                        count++;
-                    }
-                }
-                return count;
-            },
-            shouldCallWatson: function() {
-                return (this.total * this.objectLength(metricData.data)) <= 2000;
-            },
-            callWatson: function(format, callback) {
-                //var format = metricData.format;
-                var columns = [];
-                var options = [];
-                for (var f in format) {
-                    var column = {};
-                    column.key = format[f];
-                    column.full_name = format[f];
-                    column.type = "NUMERIC";
-                    column.is_objective = true;
-                    column.goal = "MAX";
-                    columns.push(column);
-                }
-
-                for (var k in metricData.data) {
-                    if (metricData.data.hasOwnProperty(k)) {
-                        var option = {};
-                        option.key = k;
-                        option.name = k;
-                        var values = {};
-                        for (var i = 0; i < format.length; i++) {
-                            values[format[i]] = metricData.data[k][i];
-                        }
-                        option.values = values;
-                        options.push(option);
-                    }
-                }
-
-                var result = {};
-                result.columns = columns;
-                result.options = options;
-                result.subject = 'living';
-                console.dir(result);
-                // ajaxPost('/save', {'foo': 'bar'}, function(content){
-                //     //onSuccess
-                //     alert(content);
-                // });
-                $j.ajax({
-                    type: 'POST',
-                    url: '/watson',
-                    contentType: 'application/json',
-                    data: JSON.stringify(result),
-                    dataType: "text",
-                    headers: {},
-
-                    success: function(result) {
-                      //console.log("success");
-                      //console.dir(result);
-                      callback(result);
-                    },
-
-                    error: function(e) {
-                      console.log("[ERROR]");
-                      callback(undefined, e);
-                    }
-                });
-            }
+        _.map(metricData.data, function(num, key) {
+          that.scores[key] = num;
+          that.computedScores[key] = 0;
         });
-    </script>
-    
+      };
+      r.send('na');
+      this.draw(false);
+      $j(window).resize(function() {
+        if (this.resizeTO) clearTimeout(this.resizeTO);
+        this.resizeTO = setTimeout(function() {
+          $j(this).trigger('resizeEnd');
+        }, 500);
+      });
+
+      $j(window).bind('resizeEnd', function() {
+        that.draw(false);
+      });
+
+    },
+    draw: function(watson) {
+      var that = this;
+      var arr = [];
+      var rates = [];
+      var width = that.$.map.offsetWidth;
+      var height = that.$.map.offsetHeight;
+
+      //var scale = width * 354;
+      var scale = (width / 843) * 268000;
+      var horizontalOffset = width / 1.7;
+      var verticalOffset = height / 3.05;
+
+      if (that.$.map.querySelector('svg') != undefined) {
+        that.$.map.querySelector('svg').remove();
+      }
+      var map = d3.select(that.$.map).append('svg').attr('width', width)
+        .attr('height', height);
+      this.map = map;
+      var path = d3.geo.path().projection(d3.geo.albers().origin([-122.4031949051393, 37.80511854740679]).scale(scale).translate([horizontalOffset, verticalOffset]));
+      d3.json('static/data/AsthmaRates_CB00.json', function(json) {
+        map.selectAll('path')
+          .data(json.features)
+          .enter().append('path')
+          .attr('d', path)
+          .attr('id', function(d, i) {
+            return 'n' + i
+          })
+          .attr('class', function(d, i) {
+            arr.push(d.properties);
+            return 'block b' + d.properties.BLOCKGROUP
+          })
+          .style('fill', function(d) {
+            if (watson && that.watsonBlocks.indexOf(d.properties.BLOCKGROUP) <= -1) {
+              return that.colorBlock(0, 10, that.colorArray);
+            } else {
+              return that.colorBlock(that.computedScores[d.properties.BLOCKGROUP], 10, that.colorArray);
+            }
+          })
+          .on('mouseover', function() {
+            var zip = d3.select(this).attr('class').split('block b').join('');
+            var ques = d3.select(this).attr('id').split('n').join('');
+            var score = Math.round(that.computedScores[zip] * 10) / 10;
+            d3.select(that.$.map).selectAll('p').text('');
+
+            // Add tooltip
+            d3.select(that.$.tooltip).transition().duration(200).style("opacity", .9);
+
+            var tootipContent =
+              '<table>' +
+              '<tr><td>Score</td><td>' + (score) + '</td></tr>' +
+              '</table>';
+
+            d3.select(that.$.tooltip).html(tootipContent)
+              .style('left', (d3.event.pageX) + 'px')
+              .style('top', (d3.event.pageY - 28) + 'px');
+
+            if (!watson) {
+              if (that.lastSelectedBlock != null) {
+                d3.select('#n' + lastSelectedBlock).style('fill', colorBlock(that.computedScores[zip], 10, that.colorArray));
+              }
+              lastSelectedBlock = ques; //global value for last obj
+              d3.select('#map .b' + zip).style('fill', that.highColor);
+            }
+          })
+          .on('mouseout', function() {
+            // Remove tooltip on mouse out
+            d3.select(that.$.tooltip).transition().duration(500).style('opacity', 0);
+            // Deselect block on mouse out
+            if (!watson && that.lastSelectedBlock != null) {
+              d3.select('#n' + lastSelectedBlock).style('fill', colorBlock(that.computedScores[lastSelectedBlock], 10, that.colorArray));
+            }
+          });
+      });
+    },
+    calculateScore: function(district_id) {
+      score = 0.0;
+      feature_scores = this.scores[district_id];
+      for (var i = 0; i < feature_scores.length; i++) {
+        if (this.features[i][1]) {
+          score += feature_scores[i];
+        }
+      }
+      if (this.total > 0) {
+        score = score / this.total;
+      } else {
+        score = 0.0;
+      }
+      return score;
+    },
+    updateTotal: function() {
+      sum = 0;
+      _.each(this.features, function(feature) {
+        if (feature[1] == true) {
+          sum++;
+        }
+      })
+      this.total = sum;
+    },
+    featuresChanged: function(oldValue) {
+      this.updateTotal();
+    },
+    featureToggled: function(obj) {
+      var index = -1;
+      var that = this;
+      _.each(that.features, function(feature) {
+        if (feature[0] == obj.target.id) {
+          feature[1] = !feature[1];
+        }
+      })
+      this.updateTotal();
+      _.map(metricData.data, function(num, key) {
+        that.computedScores[key] = that.calculateScore(key) * 10;
+      });
+      this.updateWatson();
+      this.draw(false);
+    },
+    colorBlock: function(value, max_val, swatch) {
+      //console.log("value: " + value + " max_val: " + max_val + " swatch");
+      var step_size = Math.round(max_val / swatch.length);
+      var color = Math.round(value / step_size);
+      return swatch[Math.min(Math.min(color, swatch.length), swatch.length - 1)]
+    },
+    updateWatson: function() {},
+
+    showWatson: function() {
+      var that = this;
+      this.watsonBlocks = [];
+      var selectedFeatures = [];
+      _.each(this.features, function(feature) {
+        if (feature[1]) {
+          selectedFeatures.push(feature[0]);
+        }
+      });
+      console.log(selectedFeatures);
+
+      this.watsonFeatures.selectedFeatures;
+      if (this.shouldCallWatson()) {
+        this.callWatson(selectedFeatures, function(data, error) {
+          //console.dir("HELLO" + data);
+
+          var parsedData = JSON.parse(data);
+          delete parsedData
+          if (error) {
+            console.log('[ERROR] calling watson : ' + error);
+          } else {
+            var solutions = parsedData.content.resolution.solutions;
+            console.dir(solutions);
+            _.each(solutions, function(e) {
+              console.log('hello' + e);
+              if (e.status == 'FRONT') {
+                that.watsonBlocks.push(e.solution_ref);
+              }
+            })
+            that.draw(true);
+          }
+        });
+      } else {
+        alert('Too many features to call Watson');
+      }
+    },
+    objectLength: function(obj) {
+      var count = 0;
+      var i;
+
+      for (i in obj) {
+        if (obj.hasOwnProperty(i)) {
+          count++;
+        }
+      }
+      return count;
+    },
+    shouldCallWatson: function() {
+      return (this.total * this.objectLength(metricData.data)) <= 2000;
+    },
+    callWatson: function(format, callback) {
+      //var format = metricData.format;
+      var columns = [];
+      var options = [];
+      for (var f in format) {
+        var column = {};
+        column.key = format[f];
+        column.full_name = format[f];
+        column.type = 'NUMERIC';
+        column.is_objective = true;
+        column.goal = 'MAX';
+        columns.push(column);
+      }
+
+      for (var k in metricData.data) {
+        if (metricData.data.hasOwnProperty(k)) {
+          var option = {};
+          option.key = k;
+          option.name = k;
+          var values = {};
+          for (var i = 0; i < format.length; i++) {
+            values[format[i]] = metricData.data[k][i];
+          }
+          option.values = values;
+          options.push(option);
+        }
+      }
+
+      var result = {};
+      result.columns = columns;
+      result.options = options;
+      result.subject = 'living';
+
+      $j.ajax({
+        type: 'POST',
+        url: '/watson',
+        contentType: 'application/json',
+        data: JSON.stringify(result),
+        dataType: 'text',
+        headers: {},
+        success: function(result) {
+          callback(result);
+        },
+        error: function(e) {
+          console.log('[ERROR]');
+          callback(undefined, e);
+        }
+      });
+    }
+  });
+  </script>
 </polymer-element>

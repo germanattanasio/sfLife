@@ -1,41 +1,5 @@
 
 {% extends 'base.html' %}
-
-{% block content %}
-<!-- <div class="top-section">
-    <div class="row">
-      <div class="col-md-4 left-panel">EDGE</div>
-      <div class="col-md-8 right-panel">
-          <div id="map" style="width: 100%; height: 100%"></div>
-      </div>
-    </div>
-
-      <script>
-
-                var arr = [];
-                var rates = [];
-                var width = document.getElementById('map').offsetWidth;
-                var height = document.getElementById('map').offsetHeight;
-                var map = d3.select('#map').append('svg').attr("width", width)
-                .attr("height", height);
-                var path = d3.geo.path().projection(d3.geo.albers().origin([-122.4031949051393, 37.80511854740679]).scale(400000).translate([700, 223]));
-
-                d3.json('static/data/AsthmaRates_CB00.json', function(json) {
-                    map.selectAll('path')
-                        .data(json.features)
-                        .enter().append('path')
-                        .attr('d', path)
-                        .attr('class', function(d) {
-                            console.log('block: ' + d.properties.BLOCKGROUP);
-                         //   console.log('zip z' + d.properties);
-                            arr.push(d.id);
-                            return 'zip z' + d.id
-                        })
-                }); 
-
-    </script>
-</div> -->
-
-    <sf-life></sf-life>
-
+  {% block content %}
+  <sf-life></sf-life>
 {% endblock %}

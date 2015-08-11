@@ -204,7 +204,7 @@ def point_in_poly(x,y,poly):
          p2 = poly[i]
       if p1[1] == p2[1] and p1[1] == y and x > min(p1[0], p2[0]) and x < max(p1[0], p2[0]):
          return "IN"
-      
+
    n = len(poly)
    inside = False
    p1x,p1y = poly[0]
@@ -239,7 +239,7 @@ def parseBlocks(json):
 Adds poverty, popdensity, airquality, affordability
 """
 def addData2():
-	currJson = loadJson('SF.json')	
+	currJson = loadJson('SF.json')
 	poverty = Poverty()
 	popDensity = PopulationDensity()
 	airQuality = AirQuality()
@@ -271,7 +271,7 @@ def addMinLocations():
 	facilities = SFHealthFacilities()
 	gardens = SFGardens()
 	markets = SFFarmersMarkets()
-	currJson = loadJson('SF.json')	
+	currJson = loadJson('SF.json')
 	facilityMap = {}
 	for block in facilities:
 		facilityMap[block['blockid']] = block['closest']

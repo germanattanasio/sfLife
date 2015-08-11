@@ -9,7 +9,6 @@ from . import form
 
 logging.basicConfig()
 
-
 def new(request):
     return render(request, 'dashboard.html')
 
@@ -18,12 +17,12 @@ def watson(request):
     headers = {
         'content-type':'application/json'
     }
-    #dict(queryDict.iterlists())
-    #print request.body
-    auth = HTTPBasicAuth('ec08b85d-cf22-46c5-b728-eec7f3f24c9a', '7zO3zKu73n3E')
-    watson_url = 'https://gateway.watsonplatform.net/tradeoff-analytics-beta/api/v1/dilemmas'
-    print request.body
-    response = requests.post(watson_url, data=request.body, headers=headers, auth=auth)
-    print response.content
+    # Replace the username,password and url with the credentials from VCAP_SERVICES
+    USERNAME = 'USERNAME'
+    PASSWORD = 'PASSWORD'
+    URL = 'SERVICE_URL'
+
+    auth = HTTPBasicAuth(USERNAME, PASSWORD)
+    response = requests.post(URL + '/v1/dilemmas', data=request.body, headers=headers, auth=auth)
     results = json.loads(response.text)
     return results

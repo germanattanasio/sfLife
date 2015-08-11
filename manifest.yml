@@ -1,0 +1,12 @@
+declared-services:
+  tradeoff-analytics-service:
+    type: tradeoff_analytics
+    plan: standard
+applications:
+- name: san-francisco-life
+  command: sh run.sh
+  buildpack: https://github.com/ephoning/heroku-buildpack-python
+  path: .
+  memory: 512M
+  services:
+  - tradeoff-analytics-service

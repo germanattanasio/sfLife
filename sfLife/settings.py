@@ -16,64 +16,29 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fa^y(hgth=cqi2w7x&y_@k@6=l%*ml9c$1r4--j_@(0oi^*mh8'
-
+SECRET_KEY= 'BATMAN'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
-
+TEMPLATE_DEBUG = False
+ALLOWED_HOSTS = ['san-francisco-life.mybluemix.net','localhost']
 
 # Application definition
-
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
     'sfLife',
-
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_URLS_REGEX = '^.*$'
-
 ROOT_URLCONF = 'sfLife.urls'
-
 WSGI_APPLICATION = 'sfLife.wsgi.application'
-
 STATIC_ROOT = 'staticfiles'
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-# TEMPLATE_DIRS = (
-#         os.path.join(PROJECT_ROOT, "/sfLife/sfLife/templates/"),
-#     )
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -82,19 +47,11 @@ DATABASES = {
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
