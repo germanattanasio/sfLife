@@ -5,7 +5,6 @@ from requests.auth import HTTPBasicAuth
 import json
 import requests
 import logging
-from . import form
 
 logging.basicConfig()
 
