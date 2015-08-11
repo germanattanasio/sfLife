@@ -2,7 +2,7 @@
   San Francisco Life previously hedge is a web application that uses the IBM Watson [Tradeoff Analytics][service_url] service helps you make
   better choices on where to live in San Francisco.
 
-This repository is a fork of https://github.com/MasonIII/sfLife all credits goes to [Ryan Ma](https://github.com/MasonIII).
+This repository is a fork of https://github.com/MasonIII/sfLife all credits goes to [Ryan Ma](https://github.com/MasonIII). :dancers:
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
