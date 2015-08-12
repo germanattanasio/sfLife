@@ -326,7 +326,7 @@
       console.log(selectedFeatures);
 
       this.watsonFeatures.selectedFeatures;
-      if (this.shouldCallWatson()) {
+//       if (this.shouldCallWatson()) {
         var loading = jQuery(this.$.watson_loading);
         loading.show();
         this.callWatson(selectedFeatures, function(data, error) {
@@ -347,9 +347,9 @@
             that.draw(true);
           }
         });
-      } else {
-        alert('Too many features to call Watson');
-      }
+//       } else {
+//         alert('Too many features to call Watson');
+//       }
     },
     objectLength: function(obj) {
       var count = 0;

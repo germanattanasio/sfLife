@@ -22,6 +22,6 @@ def watson(request):
     URL = 'SERVICE_URL'
 
     auth = HTTPBasicAuth(USERNAME, PASSWORD)
-    response = requests.post(URL + '/v1/dilemmas', data=request.body, headers=headers, auth=auth)
+    response = requests.post(URL + '/v1/dilemmas?generate_visualization=false', data=request.body, headers=headers, auth=auth)
     results = json.loads(response.text)
     return results
