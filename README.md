@@ -41,8 +41,12 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   ```sh
   $ cf create-service tradeoff_analytics standard tradeoff-analytics-service
   ```
+6. Install the bowel dependencies (you need to have bowel installed)
+  ```sh
+  $ bowel install
+  ```
 
-6. Push it live!
+7. Push it live!
   ```sh
   $ cf push
   ```
