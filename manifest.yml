@@ -5,7 +5,6 @@ declared-services:
 applications:
 - name: san-francisco-life
   command: sh run.sh
-  buildpack: https://github.com/ephoning/heroku-buildpack-python
   path: .
   memory: 512M
   services:
